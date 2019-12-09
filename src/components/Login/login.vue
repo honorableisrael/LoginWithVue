@@ -58,6 +58,7 @@ export default Vue.extend({
                 password:this.password
             }
             console.log(data)
+            localStorage.setItem('userinfo', JSON.stringify(data)) //in the absence of a real api for user auth this would handle auth
             alert('Form Submitted')
             //make network request
             //axios post

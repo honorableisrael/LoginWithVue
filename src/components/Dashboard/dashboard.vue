@@ -14,7 +14,7 @@
       <div class="heading">
         <img src="https://uniim1.shutterfly.com/ng/services/mediarender/THISLIFE/021036514417/media/23148907008/medium/1501685726/enhance" alt="">
         <div class="info">
-          <h3><a href="#">Mostafa Omar</a></h3>
+          <h3 v-if="user" class="useremail">{{user}}</h3>
           <p>Lorem ipsum dolor sit amet consectetur.</p>
         </div>
       </div>
@@ -302,13 +302,20 @@ export default Vue.extend({
   name:"Dashboard",
   data(){
       return{
-          user:{},
+          user:'',
           isloggedIn:false
       }
   },
   beforeCreate(){
       //check if the user is loggedIn if false redirect to login page
-  }  
+  },
+  beforeMount(){
+       const userInfo = localStorage.getItem('userinfo')
+       const parsedUser = JSON.parse(userInfo) 
+       console.log(parsedUser)
+       return this.user = parsedUser.email
+      
+  }
 })
 </script>
 <style>
@@ -722,6 +729,10 @@ body {background-color: #2a2b3d}
     border: none !important;
   }
 
+}
+.useremail{
+    overflow: hidden;
+    font-size: 14px;
 }
 
 .navbar-default .navbar-nav>li>a {
