@@ -76,7 +76,7 @@ export default Vue.extend({
     margin: 10%;
 }
 .formwrapper{
-    border-top: 2px solid  rgb(115, 170, 153);
+    border-top: 2px solid  #7064c7;
     box-shadow: rgba(0, 0, 0, 0.47) 0px 5px 14px;
     padding: 6rem 1rem;
     width: 40%;
@@ -84,7 +84,10 @@ export default Vue.extend({
 .submitbtn{
     border-radius: 2rem;
     background: transparent;
-    color: violet;
+    color: white;
+}
+.submitbtn:focus{
+    outline: none;
 }
 .errormessage{
     color: red;
@@ -109,7 +112,7 @@ export default Vue.extend({
     transition: 2s ease-in-out;
     animation: cubic-bezier();
     animation-direction: alternate;
-    border-bottom: 2px solid rgb(115, 170, 153);
+    border-bottom: 2px solid #b1abdd;
 }
 .submitbtn{
     width: 100%;
@@ -117,7 +120,7 @@ export default Vue.extend({
     top: 1.2rem;
     padding: 5px 10px;
     color: white;
-    background: rgb(115, 170, 153);
+    background-image: linear-gradient(to right,#b4afb1,#39307a);
     cursor: pointer;
 } 
 </style>
