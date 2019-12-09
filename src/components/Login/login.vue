@@ -1,16 +1,21 @@
 <template>
-<div class="loginwrapper">
-          <form v-on:submit.prevent ="submitForm()" class="formwrapper">
+    <div class="loginwrapper">
+          <form v-on:submit.prevent ="errorMessage.length==0? validateForm():''" class="formwrapper">
+                <div v-if="errorMessage" class="errormessage">
+                   <div v-for="error in errorMessage" v-bind:key="error.index">
+                    {{error}}
+                   </div>
+                </div>
                 <div class="userinputwrapper">
                 <label for="username">
                 <p>Username</p>
-                <input type="text" v-model="username" id="username" class="namesfield" value="" />
+                <input type="text" v-on:click="clearError" v-model="username" id="username" class="namesfield" value="" />
                 </label>
                 </div>
                 <div>
                 <label for="password">
                 <p>Password</p>
-                <input type="password" id="password" v-model="password" class="namesfield" value="" />
+                <input type="password" v-on:click="clearError" id="password" v-model="password" class="namesfield" value="" />
                 </label>
                 </div>
                 <div><button type="submit" class="submitbtn">Submit</button></div>
@@ -24,19 +29,38 @@ export default Vue.extend({
     data(){
         return{
             username:'',
-            password:''
+            password:'',
+            errorMessage:[]
         }
     },
     methods:{
+        validateForm(){
+            console.log('we are validating')
+            if(this.username ==''){
+                this.errorMessage.push(' Username is required')
+            }
+            if(this.password ==''){
+                this.errorMessage.push(' Password is required')
+                return
+            }
+            if(this.username !=='' && this.password !==''){
+                this.submitForm()
+            }
+            console.log(this.errorMessage)
+        },
+        clearError(){
+            console.log('form fields cleared')
+            this.errorMessage=[]
+        },
         submitForm(){
             const data = {
                 email:this.username,
                 password:this.password
             }
             console.log(data)
-            alert(data)
+            alert('Form Submitted')
             //make network request
-            
+            //axios post
         }
     }
 })
@@ -61,6 +85,9 @@ export default Vue.extend({
     border-radius: 2rem;
     background: transparent;
     color: violet;
+}
+.errormessage{
+    color: red;
 }
 .namesfield{
     border: none;
