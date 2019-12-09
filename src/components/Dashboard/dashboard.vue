@@ -84,14 +84,14 @@
     </aside>
     <section id="contents">
       <nav class="navbar navbar-default">
-        <div class="container-fluid">
+        <div class="container-fluid navflex">
           <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
               <i class="fa fa-align-right"></i>
             </button>
             <a class="navbar-brand" href="#">my<span class="main-color">Dashboard</span></a>
           </div>
-          <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+          <div class="collapse navbar-right" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav">
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">My profile <span class="caret"></span></a>
@@ -299,7 +299,16 @@
 <script>
 import Vue from 'vue';
 export default Vue.extend({
-  name:"Dashboard"  
+  name:"Dashboard",
+  data(){
+      return{
+          user:{},
+          isloggedIn:false
+      }
+  },
+  beforeCreate(){
+      //check if the user is loggedIn if false redirect to login page
+  }  
 })
 </script>
 <style>
@@ -668,6 +677,9 @@ body {background-color: #2a2b3d}
 /* كمية الإمبورتات دى علشان البوتستراب تبطل غتاته وتسيب العناصر اللى متعدله فى حالها طبعا الكلام ده فى كود بن بس */
 
 /* Start bootstrap */
+.navflex{
+    display: flex;
+}
 .navbar-right .dropdown-menu {
   right: auto !important;
   left: 0 !important;
@@ -713,7 +725,7 @@ body {background-color: #2a2b3d}
 }
 
 .navbar-default .navbar-nav>li>a {
-  float: left !important;
+display: flex;
 }
 .navbar-default .navbar-nav>li>a>span:not(.caret) {
   background-color: #e74c3c !important;

@@ -59,9 +59,10 @@ export default Vue.extend({
             }
             console.log(data)
             alert('Form Submitted')
-            this.$router.push('/dashboard')
             //make network request
             //axios post
+            this.$router.push('/dashboard') 
+
         }
     }
 })
