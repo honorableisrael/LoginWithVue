@@ -1,7 +1,6 @@
 <template>
   <div id="app">
-    <!-- <TodoList msg=""/> -->
-    <Login/>
+    <router-view/>
   </div>
 </template>
 

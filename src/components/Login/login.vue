@@ -35,7 +35,7 @@ export default Vue.extend({
     },
     methods:{
         validateForm(){
-            console.log('we are validating')
+            console.log(history)
             if(this.username ==''){
                 this.errorMessage.push(' Username is required')
             }
@@ -59,6 +59,7 @@ export default Vue.extend({
             }
             console.log(data)
             alert('Form Submitted')
+            this.$router.push('/dashboard')
             //make network request
             //axios post
         }
