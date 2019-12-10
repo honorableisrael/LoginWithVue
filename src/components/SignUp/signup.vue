@@ -1,16 +1,28 @@
 <template>
     <div class="loginwrapper">
           <form v-on:submit.prevent ="errorMessage.length==0? validateForm():''" class="formwrapper">
-                <h3 class="text-center titlesignup">Login</h3>
+            <h3 class="text-center titlesignup">Sign Up</h3>
                 <div v-if="errorMessage" class="errormessage">
                    <div v-for="error in errorMessage" v-bind:key="error.index">
                     {{error}}
                    </div>
                 </div>
                 <div class="userinputwrapper">
-                <label for="username">
-                <p>Username</p>
-                <input type="text" v-on:click="clearError" v-model="username" id="username" class="namesfield" value="" />
+                <label for="firstname">
+                <p>First Name</p>
+                <input type="text" v-on:click="clearError" v-model="firstname" id="firstname" class="namesfield" value="" />
+                </label>
+                </div>
+                 <div class="userinputwrapper">
+                <label for="lastname">
+                <p>Last Name</p>
+                <input type="text" v-on:click="clearError" v-model="lastname" id="lastname" class="namesfield" value="" />
+                </label>
+                </div>
+                 <div class="userinputwrapper">
+                <label for="email">
+                <p>Email</p>
+                <input type="text" v-on:click="clearError" v-model="email" id="email" class="namesfield" value="" />
                 </label>
                 </div>
                 <div>
@@ -20,19 +32,19 @@
                 </label>
                 </div>
                 <div><button type="submit" class="submitbtn">Submit</button></div>
-                <div class="signup">
-                <span> New user?<router-link to='/signup'> Sign Up</router-link></span>
-                </div>
+                <!-- <span> Existing user?<router-link to='/signup'> Login</router-link></span> -->
           </form>
     </div>
 </template>
 <script>
 import Vue from 'vue';
 export default Vue.extend({
-    name:'Login',
+    name:'SignUp',
     data(){
         return{
-            username:'',
+            firstname:'',
+            lastname:'',
+            email:"",
             password:'',
             errorMessage:[]
         }
@@ -40,14 +52,20 @@ export default Vue.extend({
     methods:{
         validateForm(){
             console.log(history)
-            if(this.username ==''){
-                this.errorMessage.push(' Username is required')
+            if(this.firstname ==''){
+                this.errorMessage.push('firstname is required')
             }
             if(this.password ==''){
                 this.errorMessage.push(' Password is required')
+            }
+            if(this.lastname ==''){
+                this.errorMessage.push('lastname is required')
+            }
+            if(this.email==''){
+                this.errorMessage.push('email is required')
                 return
             }
-            if(this.username !=='' && this.password !==''){
+            if(this.firstname !=='' && this.password !==''){
                 this.submitForm()
             }
             console.log(this.errorMessage)
@@ -58,6 +76,8 @@ export default Vue.extend({
         },
         submitForm(){
             const data = {
+                firstname:this.firstname,
+                lastname:this.lastname,
                 email:this.username,
                 password:this.password
             }
@@ -75,15 +95,17 @@ export default Vue.extend({
 </script>
 
 <style>
-.signup{
-    position: relative;
-    top: 2rem;
-}
+    
 .loginwrapper{
     text-align: center; 
     display: flex;
     justify-content: center;
     margin: 10%;
+}
+.titlesignup{
+    position: relative;
+    top:-3.6rem;
+    text-align: center;
 }
 .formwrapper{
     border-top: 2px solid  #7064c7;
